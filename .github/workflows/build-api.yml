@@ -32,5 +32,5 @@ jobs:
           file: ./DockerCourseApi/Dockerfile
           push: true
           tags: |
-            ${{ vars.DOCKERHUB_USERNAME }}/api:latest
-            ${{ vars.DOCKERHUB_USERNAME }}/api:${{github.run_number}}
+            ${{ vars.DOCKERHUB_USERNAME }}/docker-course-api:latest
+            ${{ vars.DOCKERHUB_USERNAME }}/docker-course-api:${{github.run_number}}

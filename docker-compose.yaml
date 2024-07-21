@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: DockerCourseFrontend/Dockerfile
-    image: localhost:5001/docker-course-frontend
+    image: docker-course-frontend
     container_name: docker-course-frontend-container
     ports:
       - 1234:8080
@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: DockerCourseApi/Dockerfile
-    image: localhost:5001/docker-course-api
+    image: docker-course-api
     container_name: docker-course-api-container
     ports:
       - 17860:8080

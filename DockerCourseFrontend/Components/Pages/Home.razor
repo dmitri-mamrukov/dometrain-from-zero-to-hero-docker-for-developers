@@ -1,0 +1,49 @@
+﻿@page "/"
+@inject HttpClient HttpClient
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<button class="btn btn-primary" @onclick="GetPodcasts1">Get Podcasts 1</button>
+
+<button class="btn btn-primary" @onclick="GetPodcasts2">Get Podcasts 2</button>
+
+@if (_podcasts1 is not null)
+{
+    <ul>
+        @foreach (var podcast in _podcasts1)
+        {
+            <li>@podcast</li>
+        }
+    </ul>
+}
+
+@if (_podcasts2 is not null)
+{
+    <ul>
+        @foreach (var podcast in _podcasts2)
+        {
+            <li>@podcast</li>
+        }
+    </ul>
+}
+
+@code
+{
+    private IList<string>? _podcasts1;
+    private IList<string>? _podcasts2;
+
+    private async void GetPodcasts1()
+    {
+        _podcasts1 = await HttpClient.GetFromJsonAsync<IList<string>>("http://api:8080/podcasts-simple");
+        StateHasChanged();
+    }
+
+    private async void GetPodcasts2()
+    {
+        _podcasts2 = await HttpClient.GetFromJsonAsync<IList<string>>("http://api:8080/podcasts");
+        StateHasChanged();
+    }
+}

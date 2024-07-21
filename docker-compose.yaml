@@ -1,0 +1,41 @@
+services:
+
+  frontend:
+    build:
+      context: .
+      dockerfile: DockerCourseFrontend/Dockerfile
+    image: localhost:5001/docker-course-frontend
+    container_name: docker-course-frontend-container
+    ports:
+      - 1234:8080
+    volumes:
+      - frontend-temp-keys:/home/temp-keys
+
+  api:
+    build:
+      context: .
+      dockerfile: DockerCourseApi/Dockerfile
+    image: localhost:5001/docker-course-api
+    container_name: docker-course-api-container
+    ports:
+      - 17860:8080
+
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: docker-course-database-container
+    environment:
+      - ACCEPT_EULA=true
+      - MSSQL_SA_PASSWORD=Dometrain#123
+    ports:
+      - 1433:1433
+
+  database-seed:
+    depends_on: [ database ]
+    build:
+      context: .
+      dockerfile: Database/Dockerfile
+    container_name: docker-course-database-seed-container
+
+volumes:
+  frontend-temp-keys:
+    external: false

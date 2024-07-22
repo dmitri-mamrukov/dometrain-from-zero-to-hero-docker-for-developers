@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerCourseApi", "DockerCourseApi\DockerCourseApi.csproj", "{65C38791-C49C-46B8-A390-22A136745E14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerCourseApi.Tests", "DockerCourseApi.Tests\DockerCourseApi.Tests.csproj", "{6833DC4B-6EB2-486D-BF5A-DB68C356A1CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerCourseFrontend", "DockerCourseFrontend\DockerCourseFrontend.csproj", "{B44D9F82-158F-4942-9251-81B1E6F62E54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +26,13 @@ Global
 		{65C38791-C49C-46B8-A390-22A136745E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C38791-C49C-46B8-A390-22A136745E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C38791-C49C-46B8-A390-22A136745E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6833DC4B-6EB2-486D-BF5A-DB68C356A1CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6833DC4B-6EB2-486D-BF5A-DB68C356A1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6833DC4B-6EB2-486D-BF5A-DB68C356A1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6833DC4B-6EB2-486D-BF5A-DB68C356A1CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44D9F82-158F-4942-9251-81B1E6F62E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44D9F82-158F-4942-9251-81B1E6F62E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44D9F82-158F-4942-9251-81B1E6F62E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44D9F82-158F-4942-9251-81B1E6F62E54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

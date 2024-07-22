@@ -35,7 +35,8 @@ jobs:
           docker build \
             --tag ${{ vars.DOCKERHUB_USERNAME }}/docker-course-api:latest \
             --tag ${{ vars.DOCKERHUB_USERNAME }}/docker-course-api:${{ github.run_number }} \
-            --file ./DockerCourseApi/Dockerfile
+            --file ./DockerCourseApi/Dockerfile \
+            .
       -
         name: Push
         run: |

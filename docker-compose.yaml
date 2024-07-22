@@ -1,28 +1,30 @@
 services:
 
   frontend:
+    depends_on: [ api ]
     build:
       context: .
       dockerfile: DockerCourseFrontend/Dockerfile
     image: docker-course-frontend
-    container_name: docker-course-frontend-container
+    container_name: frontend
     ports:
       - 1234:8080
     volumes:
       - frontend-temp-keys:/home/temp-keys
 
   api:
+    depends_on: [ database-seed ]
     build:
       context: .
       dockerfile: DockerCourseApi/Dockerfile
     image: docker-course-api
-    container_name: docker-course-api-container
+    container_name: api
     ports:
       - 17860:8080
 
   database:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: docker-course-database-container
+    container_name: database
     environment:
       - ACCEPT_EULA=true
       - MSSQL_SA_PASSWORD=Dometrain#123
@@ -34,7 +36,7 @@ services:
     build:
       context: .
       dockerfile: Database/Dockerfile
-    container_name: docker-course-database-seed-container
+    container_name: database-seed
 
 volumes:
   frontend-temp-keys:

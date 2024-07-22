@@ -1,9 +1,11 @@
 using System.Data.SqlClient;
 using Dapper;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors();
+builder.Services.Configure<Settings>(builder.Configuration);
 
 var app = builder.Build();
 
@@ -22,12 +24,11 @@ app.MapGet("/podcasts-simple", () => new List<string>
     "The .NET Core Podcast"
 });
 
-app.MapGet("/podcasts", async () =>
+app.MapGet("/podcasts", async (IOptions<Settings> settings) =>
 {
-    var connection = new SqlConnection("Server=tcp:database;Initial Catalog=podcasts;" +
-        "Persist Security Info=False;User ID=sa;Password=Dometrain#123;" +
-        "MultipleActiveResultSets=False;Encrypt=True;" +
-        "TrustServerCertificate=True;Connection Timeout=30;");
+    var connString = settings.Value.ConnectionString;
+    System.Console.WriteLine("Connecting DB: {0}", connString);
+    var connection = new SqlConnection(connString);
 
     return (await connection.QueryAsync<Podcast>("SELECT * FROM Podcasts")).Select(x => x.Title);
 });
@@ -35,3 +36,7 @@ app.MapGet("/podcasts", async () =>
 app.Run();
 
 record Podcast(Guid Id, string Title);
+
+public partial class Program
+{
+}

@@ -12,6 +12,7 @@ WORKDIR "/src/DockerCourseApi"
 RUN dotnet build "DockerCourseApi.csproj" --configuration Release --output /app/build
 
 FROM build AS publish
+WORKDIR "/src/DockerCourseApi"
 RUN dotnet publish "DockerCourseApi.csproj" --configuration Release --output /app/publish /p:UseAppHost=false
 
 FROM base AS final

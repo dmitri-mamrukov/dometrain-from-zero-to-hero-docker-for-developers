@@ -1,0 +1,29 @@
+services:
+
+  api-tests:
+    depends_on: [ database-seed ]
+    build:
+      context: .
+      dockerfile: DockerCourseApi.Tests/Dockerfile
+    image: docker-course-api-tests
+    container_name: api-tests
+
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: database
+    environment:
+      - ACCEPT_EULA=true
+      - MSSQL_SA_PASSWORD=Dometrain#123
+    ports:
+      - 1433:1433
+
+  database-seed:
+    depends_on: [ database ]
+    build:
+      context: .
+      dockerfile: Database/Dockerfile
+    container_name: database-seed
+
+volumes:
+  frontend-temp-keys:
+    external: false

@@ -4,26 +4,6 @@ Dev
 dotnet new xunit --name DockerCourseApi.Tests
 dotnet sln add DockerCourseApi.Tests
 
-Build
------
-
-cd github/dometrain-from-zero-to-hero-docker-for-developers
-
-docker compose up database
-docker compose up database-seed
-
-Note: I could have both run the database and seeded it, in a single command with:
-
-docker compose up database database-seed
-(This builds a test container that runs the web app's integration tests.)
-docker build --file ./DockerCourseApi.Tests/Dockerfile --network host .
-
-Running
--------
-
-docker compose --file docker-compose.yaml up --build
-docker compose --file docker-compose.yaml down
-
 Tests
 -----
 

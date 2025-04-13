@@ -5,14 +5,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["DockerCourseFrontend/DockerCourseFrontend.csproj", "DockerCourseFrontend/"]
-RUN dotnet restore "DockerCourseFrontend/DockerCourseFrontend.csproj"
+COPY DockerCourseFrontend/DockerCourseFrontend.csproj DockerCourseFrontend/
+RUN dotnet restore DockerCourseFrontend/DockerCourseFrontend.csproj
 COPY . .
-WORKDIR "/src/DockerCourseFrontend"
-RUN dotnet build "DockerCourseFrontend.csproj" --configuration Release --output /app/build
+WORKDIR /src/DockerCourseFrontend
+RUN dotnet build DockerCourseFrontend.csproj --configuration Release --output /app/build
 
 FROM build AS publish
-RUN dotnet publish "DockerCourseFrontend.csproj" --configuration Release --output /app/publish /p:UseAppHost=false
+RUN dotnet publish DockerCourseFrontend.csproj --configuration Release --output /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

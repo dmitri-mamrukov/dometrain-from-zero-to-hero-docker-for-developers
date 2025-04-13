@@ -8,4 +8,5 @@ WORKDIR /src
 COPY DockerCourseApi.Tests/DockerCourseApi.Tests.csproj DockerCourseApi.Tests/
 RUN dotnet restore DockerCourseApi.Tests/DockerCourseApi.Tests.csproj
 COPY . .
-RUN dotnet test DockerCourseApi.Tests/DockerCourseApi.Tests.csproj
+
+CMD ["dotnet", "test", "DockerCourseApi.Tests/DockerCourseApi.Tests.csproj"]

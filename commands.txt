@@ -7,12 +7,15 @@ dotnet sln add DockerCourseApi.Tests
 Build
 -----
 
+cd github/dometrain-from-zero-to-hero-docker-for-developers
+
 docker compose up database
 docker compose up database-seed
 
 Note: I could have both run the database and seeded it, in a single command with:
 
 docker compose up database database-seed
+(This builds a test container that runs the web app's integration tests.)
 docker build --file ./DockerCourseApi.Tests/Dockerfile --network host .
 
 Running
@@ -33,3 +36,25 @@ In another console:
 docker compose --file docker-compose.test.yaml up --build api-tests
 
 docker compose --file docker-compose.test.yaml down
+
+App Usage
+---------
+
+cd github/dometrain-from-zero-to-hero-docker-for-developers
+docker compose --file docker-compose.yaml build --no-cache
+docker compose --file docker-compose.yaml up
+
+API:
+
+(For testing purposes.)
+
+http://localhost:17860/podcasts-simple
+http://localhost:17860/podcasts
+
+Frontend:
+
+http://localhost:1234
+
+Clean Up:
+
+docker compose --file docker-compose.yaml down
